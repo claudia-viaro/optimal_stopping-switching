@@ -9,7 +9,7 @@ A couple of doubts:
 
 
 ### In progress
-I am transferring this same problem under a RL formulation using OpenAI Gym architecture. I have created the module environment "gym_stopping" which can be installed as:
+I am transferring this same problem (stopping) under a RL formulation using OpenAI Gym architecture. I have created the module environment "gym_stopping" which can be installed as:
 - git clone https://github.com/claudia-viaro/gym-stopping
 - cd gym-update
 - !pip install gym-stopping
