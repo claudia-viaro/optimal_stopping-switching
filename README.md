@@ -7,7 +7,8 @@
 
 A couple of doubts:
 1. discounting
-2. value of Y in the recursion formula
+2. value of Y in the recursion formula (switching)
+3. switching algorithm using the second version returns decreasing prices for increasing spot prices, even though the functions used are the same as those used in the first version.
 
 
 ### In progress
