@@ -5,6 +5,8 @@
 
 3) the repository contains a version of the least square policy iteration algorithm used to approximate the continuation value (rather than the stopping time), [Lagoudakis](https://www2.cs.duke.edu/research/AI/LSPI/nips01.pdf)
 
+4) [link](https://www.overleaf.com/read/wzbgsfncsrgs) to overleaf summary slides 
+
 A couple of doubts:
 1. discounting
 2. value of Y in the recursion formula (switching)
