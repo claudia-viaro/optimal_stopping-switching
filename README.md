@@ -23,4 +23,4 @@ I am transferring this same problem (stopping) under a RL formulation using Open
 The environment follows a standard architecture suitable for most RL existing algorithms.
 It contains functions:
 - reset: it reset the process and returns the initial state, the spot price (currently just one asset d, but should be increased)
-- step: it reproduces an agent taking an action in the environment, having seen the current state. In this case actions are to stop or to continue (a=0, a=1)
+- step: it reproduces an agent taking an action (control) in the environment, having seen the current state. In this case actions are to stop or to continue (a=0, a=1). Once an action is taken, the system returns a new state (a new price) and a reward (a payoff/continuation value)
