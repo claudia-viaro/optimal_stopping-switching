@@ -5,7 +5,7 @@
 
 3) the repository contains a version of the least square policy iteration algorithm used to approximate the continuation value (rather than the stopping time), [Lagoudakis](https://www2.cs.duke.edu/research/AI/LSPI/nips01.pdf)
 
-4) [link](https://www.overleaf.com/read/wzbgsfncsrgs) to overleaf summary slides 
+4) links to summary [slides](https://www.overleaf.com/read/wzbgsfncsrgs) and [report](https://www.overleaf.com/project/627d0a7d14dde7bb79b7c757) 
 
 A couple of doubts:
 1. discounting
@@ -14,7 +14,7 @@ A couple of doubts:
 
 ### Optimal switching
 
-Some results on the pricing of a Bermuda max-call option with start and stop decision:
+Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V3.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime fixed:
 
 | d  | s_0 | Lower bound | Time  |
 |----|-----|-------------|-------|
@@ -34,6 +34,7 @@ Some results on the pricing of a Bermuda max-call option with start and stop dec
 | 20 | 100 | 192.448     | 0.01  |
 | 20 | 110 | 301.107     | 0.009 |
 
+Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V4.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime not fixed:
 
 ### In progress
 I am transferring this same problem (stopping) under a RL formulation using OpenAI Gym architecture. I have created the module environment "gym_stopping" which can be installed as:
