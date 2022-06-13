@@ -5,12 +5,12 @@
 
 3) the repository contains a version of the least square policy iteration algorithm used to approximate the continuation value (rather than the stopping time), [Lagoudakis](https://www2.cs.duke.edu/research/AI/LSPI/nips01.pdf)
 
-4) links to summary [slides](https://www.overleaf.com/read/wzbgsfncsrgs) and [report](https://www.overleaf.com/project/627d0a7d14dde7bb79b7c757) 
+4) links to summary [slides](https://www.overleaf.com/read/wzbgsfncsrgs) and [report](https://www.overleaf.com/project/627d0a7d14dde7bb79b7c757) (the overleaf link tends to be more updated compared to the pdf files inlcuded here, in case the pdf files here to be considered are the latest ones).
 
 A couple of doubts:
 1. discounting
 2. value of Y in the recursion formula (switching)
-3. switching algorithm using the second version returns decreasing prices for increasing spot prices, even though the functions used are the same as those used in the first version.
+3. switching algorithm with both regimes at the end returns the same value at each time step $n$, this is clearly a mistake.
 
 ### Optimal switching
 
@@ -34,7 +34,7 @@ Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/
 | 20 | 100 | 192.448     | 0.01  |
 | 20 | 110 | 301.107     | 0.009 |
 
-Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V4.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime not fixed:
+Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V4.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime not fixed. $\rightarrow$ there is a mistake here.
 
 ### In progress
 I am transferring this same problem (stopping) under a RL formulation using OpenAI Gym architecture. I have created the module environment "gym_stopping" which can be installed as:
@@ -48,4 +48,6 @@ I am transferring this same problem (stopping) under a RL formulation using Open
 The environment follows a standard architecture suitable for most RL existing algorithms.
 It contains functions:
 - reset: it reset the process and returns the initial state, the spot price (currently just one asset d, but should be increased)
-- step: it reproduces an agent taking an action (control) in the environment, having seen the current state. In this case actions are to stop or to continue (a=0, a=1). Once an action is taken, the system returns a new state (a new price) and a reward (a payoff/continuation value)
+- step: it reproduces an agent taking an action (control) in the environment, having seen the current state. In this case actions are to stop or to continue (a=0, a=1). Once an action is taken, the system returns a new state (a new price) and a reward (a payoff/continuation value).
+
+I am transferring the switching problem under a RL formulation using OpenAI Gym architecture: https://github.com/claudia-viaro/gym_switching
