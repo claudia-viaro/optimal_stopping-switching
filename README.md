@@ -12,6 +12,30 @@ A couple of doubts:
 2. value of Y in the recursion formula (switching)
 3. switching algorithm with both regimes at the end returns the same value at each time step $n$, this is clearly a mistake.
 
+### Optimal stopping 
+Some [replications](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V3.ipynb) on the pricing of a Bermuda max-call option with LSPI
+
+|assets |  spot   |   L       |   timeL    | 
+|------------------------------------------|
+|2      |    90   |      16.015     118.778   
+|2      |    100  |      24.27      112.346   
+|2      |    110  |      32.525     104.045   
+|3      |    90   |      17.821     116.851   
+|3      |    100  |      26.278     117.143   
+|3      |    110        34.734     118.504   
+|4      |    90         19.075     128.681   
+|4      |    100        27.655     130.233   
+|4      |    110        36.254     159.904   
+|5      |    90         19.97      174.879   
+|5      |    100        28.664     179.928   
+|5      |    110        37.361     170.0     
+|10     |    90         22.438     314.409   
+|10     |    100        12.037     304.515   
+|10     |    110        40.33      312.012   
+|20     |    90         24.15      1141.407  
+|20     |    100        33.671     1146.562  
+|20     |    110        42.954     1179.293 
+
 ### Optimal switching
 
 Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V3.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime fixed:
