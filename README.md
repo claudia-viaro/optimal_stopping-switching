@@ -3,7 +3,7 @@
 
 2) the repository also includes an extension of these version to the optimal switching problem ("start & stop"), taking as reference the work of [Martyr](https://www.jstor.org/stable/44985404) who gives a discrete-time, finite horizon formulation of the problem that suits the optimal stopping counterpart: [opt_switching_V3](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V3.ipynb), [opt_switching_V4](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V4.ipynb)
 
-3) the repository contains a version of the least square policy iteration algorithm used to approximate the continuation value (rather than the stopping time), [Lagoudakis](https://www2.cs.duke.edu/research/AI/LSPI/nips01.pdf), [LSPI_V1](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/LSPI_V1.ipynb)
+3) the repository contains a [version](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/LSPI_V1.ipynb) of the least square policy iteration algorithm used to approximate the continuation value (rather than the stopping time), [Lagoudakis](https://www2.cs.duke.edu/research/AI/LSPI/nips01.pdf)
 
 4) links to summary [slides](https://www.overleaf.com/read/wzbgsfncsrgs) and [report](https://www.overleaf.com/project/627d0a7d14dde7bb79b7c757) (the overleaf link tends to be more updated compared to the pdf files inlcuded here, in case the pdf files here to be considered are the latest ones).
 
@@ -15,26 +15,26 @@ A couple of doubts:
 ### Optimal stopping 
 Some [replications](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V3.ipynb) on the pricing of a Bermuda max-call option with LSPI
 
-|assets |  spot   |   L       |   timeL    | 
-|------------------------------------------|
-|2      |    90   |      16.015     118.778   
-|2      |    100  |      24.27      112.346   
-|2      |    110  |      32.525     104.045   
-|3      |    90   |      17.821     116.851   
-|3      |    100  |      26.278     117.143   
-|3      |    110        34.734     118.504   
-|4      |    90         19.075     128.681   
-|4      |    100        27.655     130.233   
-|4      |    110        36.254     159.904   
-|5      |    90         19.97      174.879   
-|5      |    100        28.664     179.928   
-|5      |    110        37.361     170.0     
-|10     |    90         22.438     314.409   
-|10     |    100        12.037     304.515   
-|10     |    110        40.33      312.012   
-|20     |    90         24.15      1141.407  
-|20     |    100        33.671     1146.562  
-|20     |    110        42.954     1179.293 
+| d |  $s_0$  |   L       |   timeL    | 
+|---|---------|-----------|------------|
+|2  |    90   |    16.015 |    118.778 |  
+|2  |    100  |    24.27  |    112.346 |  
+|2  |    110  |    32.525 |    104.045 |  
+|3  |    90   |    17.821 |    116.851 |  
+|3  |    100  |    26.278 |    117.143 |  
+|3  |    110  |    34.734 |    118.504 |  
+|4  |    90   |    19.075 |    128.681 |  
+|4  |    100  |    27.655 |    130.233 |  
+|4  |    110  |    36.254 |    159.904 |  
+|5  |    90   |    19.97  |    174.879 |  
+|5  |    100  |    28.664 |    179.928 |  
+|5  |    110  |    37.361 |    170.0   |  
+|10 |    90   |    22.438 |    314.409 |  
+|10 |    100  |    12.037 |    304.515 |  
+|10 |    110  |    40.33  |    312.012 |  
+|20 |    90   |    24.15  |    1141.407|  
+|20 |    100  |    33.671 |    1146.562|  
+|20 |    110  |    42.954 |    1179.293| 
 
 ### Optimal switching
 
