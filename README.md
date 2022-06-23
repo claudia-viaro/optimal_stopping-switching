@@ -36,12 +36,14 @@ Some [replications](https://github.com/claudia-viaro/optimal_stopping-switching/
 |20 |    100  |    33.671 |    1146.562|  
 |20 |    110  |    42.954 |    1179.293| 
 
-A version of the replication of the optimal stopping pricing from [Becker, Cheridito and Jetzen's paper](https://www.jmlr.org/papers/volume20/18-232/18-232.pdf) can be found here. By inspecting the loss curves produced at each backward recursion, we can observe that the NN is not learning well <br />
+A [version](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_stopping/optimal_stopping_V1.ipynb) of the replication of the optimal stopping pricing from [Becker, Cheridito and Jetzen's paper](https://www.jmlr.org/papers/volume20/18-232/18-232.pdf) can be found here. By inspecting the loss curves produced at each backward recursion, we can observe that the NN is not learning well <br />
 ![image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/loss_curves_optStopping.png)
+
+[Here](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_stopping/optimal_stopping_V2.ipynb) there is a second version, although not updated and possibly not that good (slow).
 
 ### Optimal switching
 
-Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V3.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime fixed:
+Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_switching/opt_switching_V3.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime fixed:
 
 | d  | s_0 | Lower bound | Time  |
 |----|-----|-------------|-------|
@@ -61,7 +63,11 @@ Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/
 | 20 | 100 | 192.448     | 0.01  |
 | 20 | 110 | 301.107     | 0.009 |
 
-Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V4.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime not fixed. $\rightarrow$ there is a mistake here.
+By inspecting the loss curves produced at each backward recursion, we can observe that the NN is not learning well <br />
+![image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/loss_curves_optSwitching.png) <br />
+
+
+Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_switching/opt_switching_V4.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime not fixed. $\rightarrow$ there is a mistake here.
 
 ### In progress
 I am transferring this same problem (stopping) under a RL formulation using OpenAI Gym architecture [gym-stopping](https://github.com/claudia-viaro/gym-stopping). I have created the module environment "gym_stopping" which can be installed as:
@@ -75,6 +81,8 @@ I am transferring this same problem (stopping) under a RL formulation using Open
 The environment follows a standard architecture suitable for most RL existing algorithms.
 It contains functions:
 - reset: it reset the process and returns the initial state, the spot price (currently just one asset d, but should be increased)
-- step: it reproduces an agent taking an action (control) in the environment, having seen the current state. In this case actions are to stop or to continue (a=0, a=1). Once an action is taken, the system returns a new state (a new price) and a reward (a payoff/continuation value).
+- step: it reproduces an agent taking an action (control) in the environment, having seen the current state. In this case actions are to stop or to continue (a=0, a=1). Once an action is taken, the system returns a new state (a new price) and a reward (a payoff/continuation value). <br>
 
-I am transferring the switching problem under a RL formulation using OpenAI Gym architecture: [gym_switching](https://github.com/claudia-viaro/gym_switching). It is notproducing any switching yet
+I am transferring the switching problem under a RL formulation using OpenAI Gym architecture: [gym_switching](https://github.com/claudia-viaro/gym_switching). It is notproducing any switching yet.  <br>
+
+The neural network approximation used up to now, seems not to be learning well the model. Changes are needed as well as more metrics to evaluate performance.
