@@ -8,11 +8,6 @@
 4) links to summary [slides](https://www.overleaf.com/read/wzbgsfncsrgs) and [report](https://www.overleaf.com/project/627d0a7d14dde7bb79b7c757) (the overleaf link tends to be more updated compared to the pdf files inlcuded here, in case the pdf files here to be considered are the latest ones).
 
 
-A couple of doubts:
-1. discounting
-2. value of Y in the recursion formula (switching)
-3. switching algorithm with both regimes at the end returns the same value at each time step $n$, this is clearly a mistake.
-
 ### Optimal stopping 
 Some [replications](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/opt_switching_V3.ipynb) on the pricing of a Bermuda max-call option with LSPI
 
