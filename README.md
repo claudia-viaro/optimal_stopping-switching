@@ -37,7 +37,7 @@ Some [replications](https://github.com/claudia-viaro/optimal_stopping-switching/
 |20 |    110  |    42.954 |    1179.293| 
 
 A version of the replication of the optimal stopping pricing from [Becker, Cheridito and Jetzen's paper](https://www.jmlr.org/papers/volume20/18-232/18-232.pdf) can be found here. By inspecting the loss curves produced at each backward recursion, we can observe that the NN is not learning well <br />
-[!image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/loss_curves_optStopping.png)
+![image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/loss_curves_optStopping.png)
 
 ### Optimal switching
 
