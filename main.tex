@@ -284,11 +284,11 @@ Generally, NNs comprise multiple node layers through which data is passed, givin
 \begin{figure}[H] 
 	\centering
 	\includegraphics[scale=0.4]{feed-forward_NN.png}
-	\caption{Interaction dynamics of the Agent and the Environment}
+	\caption{NN architecture}
 	\label{fig:diagram}
 \end{figure}
 
-The neural network used here takes the form $F^{\theta}: \mathbb{R}^d → (0,1)$ for $\theta \in \{\theta_0, \ldots, \theta_N  \}$, that is the parameters are trained via a neural network that outputs probabilities in the interval $(0,1)$. This is due to the fact that the G-B optimization algorithm is to be applied to a continuous function with respect to $\theta_n$, which $f^{\theta_n}$ is not. Hence, the multi-layer, feed-forward neural network takes the form:
+The neural network used here takes the form $F^{\theta}: \mathbb{R}^d \rightarrow (0,1)$ for $\theta \in \{\theta_0, \ldots, \theta_N  \}$, that is the parameters are trained via a neural network that outputs probabilities in the interval $(0,1)$. This is due to the fact that the G-B optimization algorithm is to be applied to a continuous function with respect to $\theta_n$, which $f^{\theta_n}$ is not. Hence, the multi-layer, feed-forward neural network takes the form:
 
 \begin{equation}
 F^{\theta}= \psi \circ a_3^{\theta} \circ \phi_{q_2} \circ a_2^{\theta} \circ \phi_{q_1} \circ a_1^{\theta}
@@ -384,15 +384,15 @@ for $f^{\theta_N} \equiv 1$ and $f^{\theta_1}, \ldots, f^{\theta_{N-1}} : \mathb
 \subsection{Parameters's optimization (Train)}
 We simulate M paths of the process $(X_n)_{n=0}^N$ with dimension $d=1, \ldots, D$ and denote them by $(x_n^m)_{n=0}^N$ for $m=1, \ldots, M$ according to \ref{eq:eq1}:
 \begin{equation}
-    x_{n,d}^m = x_{0,i} \cdot \exp \Bigg\{ \sum_{k=0}^n \Big( (r-\delta_d - \sigma_d^2 /2) \Delta t + \sigma_d \sqrt{\Delta t} \cdpt Z_{k,d}^m   \Big) \Bigg\}
+    x_{n,d}^m = x_{0,i} \cdot \exp \Bigg\{ \sum_{k=0}^n \Big( (r-\delta_d - \sigma_d^2 /2) \Delta t + \sigma_d \sqrt{\Delta t} \cdot Z_{k,d}^m   \Big) \Bigg\}
 \end{equation}
 where $\Delta t = T/N$ and $Z_{k,i}^m \sim \mathcal{N}(0,1)$. In addition we take the following hyperparameter values: $x_0^1=\{90, 100, 110\}; K=90;\sigma = 20; d=\{2, 4, 5, 10, 20\}; r= 5\%; T=3;N=9$.
 
 
 
-At maturity $N$, we choose $\theta_N \in \mathbb{R}^q$ such that $f^{\theta_N}\equiv 1$. As we do not have information regarding at which regime the process is, we consider both possibilities, that is $Y_n^{0,1}$, this means that two processes $\{Y\}$ will be carried backward in time.
+At maturity $N$, we choose $\theta_N \in \mathbb{R}^q$ such that $f^{\theta_N}\equiv 1$. As we do not have information regarding at which regime the process is, we consider both possibilities, that is $Y_n^{0,1}$, this means that two processes will be carried backward in time.
 
-For $n \leq N-1$ we determine $\theta_n \in \mathbb{R}^q$ recursively. Suppose we are at time step $n$, so that we have already obtained $f^{\theta_{n +1}}, \ldots, f^{\thetah_N} $, we can compute the time $n+1$ optimal stopping time for each of the $m$ paths:
+For $n \leq N-1$ we determine $\theta_n \in \mathbb{R}^q$ recursively. Suppose we are at time step $n$, so that we have already obtained $f^{\theta_{n +1}}, \ldots, f^{\theta_N} $, we can compute the time $n+1$ optimal stopping time for each of the $m$ paths:
 \begin{equation}
     \tilde{\tau}_{n+1}^m = \sum_{k=n+1}^N k f^{\theta_k}(x_n^m) \prod_{j=n+1}^{k-1}(1-f^{\theta_j}(x_j))
 \end{equation}

@@ -209,7 +209,7 @@ Let the $n$ stopping problem be:
     \begin{equation}\label{eq10}
         V_n=\sup_{\tau \in \mathcal{T}_n} \mathbb{E} g(\tau_n, X_{\tau_n})
     \end{equation}
-Show that the decision to stop the process can be made according to a sequence of functions $\{f_n(X_n) \}_{n=0}^N$, $f_n; \mathbb{R}^d \rightarrow \{0,1\}$. We aim to express $\tau_n$ as a function of the $0-1$ stopping decisions $f_n$
+Show that the decision to stop the process can be made according to a sequence of functions $\{f_n(X_n) \}_{n=0}^N$, $f_n: \mathbb{R}^d \rightarrow \{0,1\}$. We aim to express $\tau_n$ as a function of the $0-1$ stopping decisions $f_n$
 \end{block}
 
 \begin{itemize}
@@ -271,21 +271,38 @@ Let $n=N-1, \ldots, 0$, and assume the parameters $\theta_{n+1}, \ldots, \theta_
 
 
 \begin{frame}{Neural Network}
-We employ a sequence of feed-forward neural networks $f^{\theta_n} : \mathbb{R}^d \rightarrow \{0,1\}$ with parameters $\theta_n \in \mathbb{R}^q$, to approximate the stopping decisions $f_n$ in \ref{eq15} for $n=N-1, \ldots, 0$, using $f_N \equiv 1$. 
+We employ a sequence of feed-forward neural networks $f^{\theta_n} : \mathbb{R}^d \rightarrow \{0,1\}$ with parameters $\theta_n \in \mathbb{R}^q$, to approximate the stopping decisions $f_n$ in \ref{eq15} for $n\leq N-1$, using $f_N \equiv 1$. 
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[scale=0.3]{feed-forward_NN.png}
+	\caption{NN architecture}
+	\label{fig:NN}
+\end{figure}
 
 
-\medskip
+\begin{itemize}
+    \gooditem NNs comprise multiple node layers through which data is passed
+    \gooditem each layer of nodes trains on a distinct set of features based on the previous layer's output
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{}
+
 For $\theta \in \{ \theta_0, \ldots, \theta_N \}$, introduce the neural network $F^{\theta}: \mathbb{R}^d \rightarrow (0,1)$:
-\begin{equation}\label{eq16}
-    F^{\theta}=\psi \circ a_2^{\theta} \circ \phi_{q_1} \circ a_1^{\theta}
+\begin{equation}
+F^{\theta}= \psi \circ a_3^{\theta} \circ \phi_{q_2} \circ a_2^{\theta} \circ \phi_{q_1} \circ a_1^{\theta}
 \end{equation}
 where 
 \begin{itemize}
     \gooditem $q_1$ and $q_2$ are the number of nodes in the hidden layers
-    \gooditem $a_1^{\theta}: \mathbb{R} \rightarrow\mathbb{R}^{q_1}$, $a_2^{\theta}: \mathbb{R} \rightarrow\mathbb{R}^{q_2}$ are affine functions
-    \gooditem $\phi_{q_1}: \mathbb{R}^{q_1} \rightarrow \mathbb{R}^{q_1}$ is the ReLU activation function
-    \gooditem $\psi:\mathbb{R} \rightarrow \mathbb{R}$ is the logistic sigmoid function
+    \gooditem $a_1^{\theta} : \mathbb{R}^d \rightarrow \mathbb{R}^{q_1}, a_2^{\theta}: \mathbb{R}^{q_1} \rightarrow \mathbb{R}^{q_2}$ are affine functions : $a_i^{\theta}(x)=W_i x + b_i$ 
+    \gooditem $\phi_{q_1}: \mathbb{R}^{q_1} \rightarrow \mathbb{R}^{q_1}$ is the ReLU activation function: $\phi_{q_1}(x_i, \ldots, x_{q_i})=(x_i^{+}, \ldots, x_{q_i}^{+})$
+    \gooditem $\psi:\mathbb{R} \rightarrow \mathbb{R}$ is the logistic sigmoid function: $\psi(x)=1/(1+ e^{-x})$
 \end{itemize}
+
 
 \medskip
 $F^{\theta}$ outputs stopping probabilities $\in (0,1)$ as opposed to stopping decisions $f^{\theta}$ because the gradient-based optimization requires continuous output.
@@ -294,9 +311,9 @@ $F^{\theta}$ outputs stopping probabilities $\in (0,1)$ as opposed to stopping d
 
 \begin{frame}{Parameter space}
 \begin{itemize}
-    \gooditem the parameter space $\theta \in \mathbb{R}^q$ of $F^{\theta}$ is made of $\theta = \{ A_1, A_2, b_1, b_2 \}$, where $A_1 \in \mathbb{R}^{q_1 \times d}, A_2 \in \mathbb{R}^{q_2 \times d}, b_1 \in \mathbb{R}^{q_1}, b_2 \in \mathbb{R}^{q_2}$ are the matrices and vectors of the affine functions
+    \gooditem the parameter space $\theta \in \mathbb{R}^q$ of $F^{\theta}$ is made of $\theta = \{ W_1, W_2, b_1, b_2 \}$, where $W_1 \in \mathbb{R}^{q_1 \times d}, W_2 \in \mathbb{R}^{q_2 \times q_1}, W_3 \in \mathbb{R}^{q_2 \times 1}$ and $b_1 \in \mathbb{R}^{q_1}, b_2 \in \mathbb{R}^{q_2}, b_3 \in \mathbb{R}^{1}$ are the matrices and vectors of the affine functions
     \begin{equation}\label{eq17}
-        a^{\theta}_i (x) = A_i x + b_i, \;\;\;\; i =1, 2
+        a^{\theta}_i (x) = W_i x + b_i, \;\;\;\; i =1, 2
     \end{equation}
     \gooditem the dimension of the parameter space is: 
     \begin{equation*}\label{eq18}
@@ -306,27 +323,28 @@ $F^{\theta}$ outputs stopping probabilities $\in (0,1)$ as opposed to stopping d
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Stochastic Gradient Ascent}
-for every time step $n+N-1, \ldots, 1$, we have:
+\begin{frame}{Stochastic Gradient Descent - digression}
+at every time step $n = N-1, \ldots, 1$, we have:
 
 \medskip
 \begin{itemize}
     \gooditem \textbf{Training dataset:} simulate sample paths $(x^m_n)_{n=1}^N$ for $m=1, \ldots, M$
-    \gooditem \textbf{Loss function:} maximize a loss function (e.g. mean squared-error) $C(\theta)$ with respect to $\theta$ and set the model parameters using the training data
+    \gooditem \textbf{Loss function:} minimize a loss function (e.g. mean squared-error) $C(\theta)$ with respect to $\theta$ and set the model parameters using the training data
+    \gooditem \textbf{Gradient:} $\nabla_{\theta}C(\theta^t)$ is computed via backpropagation
     \gooditem \textbf{Update:} the optimal parameters are found by minimizing $C(\theta)$ via a gradient descent algorithm. e.g. with learning rate $\eta$
     \begin{equation}\label{eq19}
     \theta_{t+1} \leftarrow \theta^t - \eta \cdot \nabla_{\theta}C(\theta^t)
     \end{equation}
-    This is equivalent to maximizing the reward function \ref{eq:objectiveapprox}
-    \gooditem \textbf{Gradient:} $\nabla_{\theta}C(\theta^t)$ is computed via backpropagation
-    \gooditem \textbf{Testing dataset:} using the optimized parameters from \ref{eq:update}, simulate new sample paths $(y^m_n)_{n=1}^N$ and run the algorithm
+    This is equivalent to maximizing the reward function
+
+    \gooditem \textbf{Testing dataset:} simulate new sample paths $(y^m_n)_{n=1}^N$ and run the algorithm using the optimized parameters from \ref{eq19},  
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Reward function $C(\theta)$}
 \begin{alertblock}{Objective}
 
-By backward recursion we want to find the optimal stopping time $\tau^{\ast}$ in \ref{eq1} that maximizes the expected future reward.
+By backward recursion, find the optimal stopping time $\tau^{\ast}$ in \ref{eq1} that maximizes the expected future reward.
 
 \medskip
 \begin{itemize}
@@ -359,7 +377,7 @@ by iteratively maximizing the objective function for $n=N-1, \ldots, 1$ with $F^
 \begin{equation}\label{eq22}
     \mathbb{E}[g(n, X_n)F^{\theta_n}(X_n) + g(\tau_{n+1}, X_{\tau_{n+1}})(1-F^{\theta_n}(X_n))]
 \end{equation}
-which produces a value close to \ref{eq:objective}
+which produces a value close to \ref{eq21}
 
 \medskip
 Once $\theta_n \in \mathbb{R}^q$ are obtained, $F^{\theta_n}$ is transformed into a stopping decision $f^{\theta_n} \in \mathbb{R}^q \rightarrow \{0,1 \}$
@@ -445,6 +463,33 @@ some elements of the system:
 \end{itemize}
 \end{frame}
 
+%----------------------------------------------------------------------------
+\begin{frame}{Training performance}
+
+\begin{figure}[H] 
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.25\linewidth]{loss_curves_optStopping.png}
+  \caption{Optimal Stopping}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.25\linewidth]{loss_curves_optSwitching.png}
+  \caption{Optimal Switching}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Loss curves (train) for 8 time steps}
+\label{fig:test}
+\end{figure}
+
+
+\begin{itemize}
+    \gooditem payoff function for the call option used is of the form $( \max_{i \in \{ 1, \ldots , d \}} X_t^i - K) ^{+}$, where $K$ is the strike price at any point in the time grid $0 = t_0 < t_1 < \ldots < t_N = T$
+    \gooditem the system also outputs a final reward for being in mode $i \in \mathbb{I}$ at time $T$ given by $\Gamma_i$
+\end{itemize}
+\end{frame}
 
 %-----------------------------------------------------------------------------------------------------
 %% Least Square Policy Iteration %%
