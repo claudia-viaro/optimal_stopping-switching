@@ -345,13 +345,13 @@ To approach the estimation of this iteration, we can start by providing a simula
     \begin{equation}
     \begin{split}
     &\gamma_{0,0} \equiv \gamma_{1,1} \equiv 0 \\
-    &\gamma_{0,1}(n) = \Big(\max_{d \in \{1, \ldots, D \}} x^i - K   \Big)^{+} + \delta,  \;\;\;\;\; \delta \sim \mathcal{N}(0,1)  \\ 
-    &\gamma_{1, 0}(n) = -\Big(\max_{d \in \{1, \ldots, D \}} x^i - K   \Big)^{+} 
+    &\gamma_{0,1}(n) = \Big(\max_{d \in \{1, \ldots, D \}} x^d - K   \Big)^{+} + \delta,  \;\;\;\;\; \delta \sim \mathcal{N}(0,1)  \\ 
+    &\gamma_{1, 0}(n) = -\Big(\max_{d \in \{1, \ldots, D \}} x^d - K   \Big)^{+} 
     \end{split}
     \end{equation}
 \end{itemize}
 
-We can introduce a discount factor $e^{- \rho t_n}$ and consider the discounted discrete-time optimal switching problem at time 0 starting in mode $i \in {0,1}$, defined as:
+We can introduce a discount factor $e^{- \rho t_n}$ and consider the discounted discrete-time optimal switching problem at time 0 starting in mode $i \in \{0,1\}$, defined as:
 
 \begin{equation}
 \begin{split}
