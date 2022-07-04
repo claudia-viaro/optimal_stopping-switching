@@ -32,8 +32,8 @@ Some [replications](https://github.com/claudia-viaro/optimal_stopping-switching/
 |20 |    100  |    33.671 |    1146.562|  
 |20 |    110  |    42.954 |    1179.293| 
 
-A [version](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_stopping/optimal_stopping_V1.ipynb) of the replication of the optimal stopping pricing from [Becker, Cheridito and Jetzen's paper](https://www.jmlr.org/papers/volume20/18-232/18-232.pdf) can be found here. By inspecting the loss curves produced at each backward recursion, we can observe that the NN is not learning well <br />
-![image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/loss_curves_optStopping.png)
+A [version](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_stopping/optimal_stopping_V1.ipynb) of the replication of the optimal stopping pricing from [Becker, Cheridito and Jetzen's paper](https://www.jmlr.org/papers/volume20/18-232/18-232.pdf) can be found here. By inspecting the loss curves produced at each backward recursion, we can observe that the learning exercise of the parameters is achieved at the first iterations. The reward curve flattens quickly, suggesting that a maximum has been reached after few iterations. <br />
+![image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/reward_curves_optStopping.png)
 
 [Here](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_stopping/optimal_stopping_V2.ipynb) there is a second version, although not updated and possibly not that good (slow).
 
