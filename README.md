@@ -59,8 +59,8 @@ Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/
 | 20 | 100 | 192.448     | 0.01  |
 | 20 | 110 | 301.107     | 0.009 |
 
-By inspecting the loss curves produced at each backward recursion, we can observe that the NN is not learning well <br />
-![image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/loss_curves_optSwitching.png) <br />
+By inspecting the reward curves produced at each backward recursion, we can observe that most of the learning exercise of the parameters is achieved at the first iterations <br />
+![image](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/figures/reward_curves_optSwitching.png) <br />
 
 
 Some [results](https://github.com/claudia-viaro/optimal_stopping-switching/blob/main/optimal_switching/opt_switching_V4.ipynb) on the pricing of a Bermuda max-call option with start and stop decision, with final regime not fixed. $\rightarrow$ there is a mistake here.
@@ -81,4 +81,3 @@ It contains functions:
 
 I am transferring the switching problem under a RL formulation using OpenAI Gym architecture: [gym_switching](https://github.com/claudia-viaro/gym_switching). It is notproducing any switching yet.  <br>
 
-The neural network approximation used up to now, seems not to be learning well the model. Changes are needed as well as more metrics to evaluate performance.
